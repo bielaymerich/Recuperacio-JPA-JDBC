@@ -62,7 +62,7 @@ public class JpaStudent implements cat.uvic.teknos.coursemanagement.models.Stude
     }
 
     @Override
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) { this.firstName = firstName;
 
     }
 
