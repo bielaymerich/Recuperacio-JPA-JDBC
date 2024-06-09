@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <File name="FileLogger" fileName="logs/hibernate.log">
+            <PatternLayout>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="FileLogger"/>
+        </Root>
+        <Logger name="org.hibernate" level="info" additivity="false">
+            <AppenderRef ref="FileLogger"/>
+        </Logger>
+        <Logger name="org.hibernate.type" level="trace" additivity="false">
+            <AppenderRef ref="FileLogger"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+            <AppenderRef ref="FileLogger"/>
+        </Logger>
+        <Logger name="org.hibernate.tool.hbm2ddl" level="debug" additivity="false">
+            <AppenderRef ref="FileLogger"/>
+        </Logger>
+    </Loggers>
+</Configuration>

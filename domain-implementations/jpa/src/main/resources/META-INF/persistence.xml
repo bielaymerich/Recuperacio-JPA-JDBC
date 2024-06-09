@@ -1,0 +1,26 @@
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+    <persistence-unit name="course-management" transaction-type="RESOURCE_LOCAL">
+        <description>Course Management persistence unit</description>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>cat.uvic.teknos.coursemanagement.domain.jpa.models.JpaGenre</class>
+        <class>cat.uvic.teknos.coursemanagement.domain.jpa.models.JpaStudent</class>
+        <class>cat.uvic.teknos.coursemanagement.domain.jpa.models.JpaCourse</class>
+        <class>cat.uvic.teknos.coursemanagement.domain.jpa.models.JpaAddress</class>
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/COURSE_MANAGEMENT_TEST"/>
+            <property name="jakarta.persistence.jdbc.user" value="your_db_user"/>
+            <property name="jakarta.persistence.jdbc.password" value="your_db_password"/>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
