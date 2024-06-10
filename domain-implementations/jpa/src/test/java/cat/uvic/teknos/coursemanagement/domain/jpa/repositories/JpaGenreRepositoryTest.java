@@ -86,7 +86,7 @@ class JpaGenreRepositoryTest {
     @DisplayName("Given an existing genre, when get is called, then the method return an instance of Genre")
     void get() {
         var repository = repositoryFactory.getGenreRepository();
-        assertNotNull(repository.get(1));
+        assertNotNull(repository.get(2));
     }
 
     @Test

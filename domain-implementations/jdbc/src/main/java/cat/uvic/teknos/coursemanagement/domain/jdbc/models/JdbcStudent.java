@@ -39,7 +39,7 @@ public class JdbcStudent implements Student {
     }
 
     @Override
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {this.firstName = firstName;
 
     }
     @Override

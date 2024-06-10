@@ -4,6 +4,7 @@ import cat.uvic.teknos.coursemanagement.models.ModelFactory;
 import cat.uvic.teknos.coursemanagement.repositories.RepositoryFactory;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.stream.Collectors;
 
 import static cat.uvic.teknos.coursemanagement.backoffice.IOUtils.*;
@@ -22,7 +23,7 @@ public class BackOffice {
         this.modelFactory = modelFactory;
     }
 
-    public void start() {
+    public void start() throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException  {
         showBanner();
         showWelcomeMessage();
 
@@ -32,29 +33,37 @@ public class BackOffice {
             command = readLine(in);
 
             switch (command) {
-                case "1" -> manageStudents();
-                case "2" -> manageCourse();
-                case "3" -> manageGenre();
-                case "4" -> manageAddress();
+                case "1":
+                    manageStudents();
+                    break;
+                case "2":
+                    manageCourse();
+                    break;
+                case "3":
+                    manageGenere();
+                    break;
+                case "4":
+                    manageAddress();
+                    break;
+                default: if(!command.equalsIgnoreCase("exit"))
+                    out.println("Invalid command");
             }
-
+            break;
         } while (!command.equals("exit"));
 
         out.println("Bye!");
     }
 
-    private void manageStudents() {
+    private void manageCourse() throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        new CourseManager(in,out, repositoryFactory, modelFactory).start();}
+    private void manageAddress() throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        new AddressManager(in,out, repositoryFactory, modelFactory).start();}
+    private void manageGenere() throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        new GenreManager(in,out, repositoryFactory, modelFactory).start();}
+    private void manageStudents() throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         new StudentManager(in, out, repositoryFactory, modelFactory).start();
     }
-    private void manageCourse() {
-        new StudentManager(in, out, repositoryFactory, modelFactory).start();
-    }
-    private void manageGenre() {
-        new StudentManager(in, out, repositoryFactory, modelFactory).start();
-    }
-    private void manageAddress() {
-        new StudentManager(in, out, repositoryFactory, modelFactory).start();
-    }
+
 
     private void showWelcomeMessage() {
         out.println("Welcome to the Course Management Back Office");
